@@ -4,17 +4,17 @@ pragma solidity ^0.8.7;
 
 import "@chainlink/contracts/src/v0.8/interfaces/AggregatorV3Interface.sol";
 
-contract TokenPrice {
-    AggregatorV3Interface private tokenAddress;
+contract PriceFeed {
+    AggregatorV3Interface private priceFeedAddress;
 
-    constructor(address _tokenAddress) {
-        tokenAddress = AggregatorV3Interface(_tokenAddress);
+    constructor(address _priceFeedAddress) {
+        priceFeedAddress = AggregatorV3Interface(_priceFeedAddress);
     }
 
     function getEthPrice() public view returns (uint256) {
-        //Goerli EthAddress 0xD4a33860578De61DBAbDc8BFdb98FD742fA7028e
+        //Goerli Eth/USDAddress 0xD4a33860578De61DBAbDc8BFdb98FD742fA7028e
         //AggregatorV3Interface ethPrice = AggregatorV3Interface(0xD4a33860578De61DBAbDc8BFdb98FD742fA7028e);
-        (, int256 price, , , ) = tokenAddress.latestRoundData();
+        (, int256 price, , , ) = priceFeedAddress.latestRoundData();
         return uint256(price * 1e10);
     }
 }

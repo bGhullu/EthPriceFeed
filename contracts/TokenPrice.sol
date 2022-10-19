@@ -11,7 +11,7 @@ contract TokenPrice {
         priceFeedAddress = AggregatorV3Interface(_priceFeedAddress);
     }
 
-    function getEthPrice() public view returns (uint256) {
+    function getPrice() public view returns (uint256) {
         //Goerli Eth/USDAddress 0xD4a33860578De61DBAbDc8BFdb98FD742fA7028e
         //AggregatorV3Interface ethPrice = AggregatorV3Interface(0xD4a33860578De61DBAbDc8BFdb98FD742fA7028e);
         (, int256 price, , , ) = priceFeedAddress.latestRoundData();
